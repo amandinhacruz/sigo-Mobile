@@ -21,17 +21,17 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of(
-                            "http://localhost:5173",
-                            "https://p-i-cbmpe.vercel.app/",
-                            "exp://26.253.137.94:8081"
-                    ));
+
+                    
+                    corsConfig.setAllowedOriginPatterns(List.of("*"));
+
                     corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     corsConfig.setAllowedHeaders(List.of("*"));
                     corsConfig.setAllowCredentials(true);
