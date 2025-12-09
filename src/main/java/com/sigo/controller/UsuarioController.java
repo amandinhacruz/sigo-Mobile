@@ -27,4 +27,28 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> listarUsuarios() {
         return ResponseEntity.ok(usuarioService.buscarTodos());
     }
+
+    @GetMapping("/{nome}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Usuario buscarUsuario (@PathVariable String nome) {
+        return  usuarioService.buscarUsuario(nome);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Usuario editar (@PathVariable Long id, @RequestBody Usuario usuario) {
+        return  usuarioService.editarUsuario(id, usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Usuario>  excluirUsuario (@PathVariable Long id) {
+        usuarioService.deletarUsuario(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
+
+
+
+

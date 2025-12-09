@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,24 +23,34 @@ public class Ocorrencia {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
+    private LocalDateTime dataRegistro;
+    private String viatura;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<TipoOcorrencia> roles;
 
-    private String viatura;
     private String grupamento;
-    private String status;
-    private String dataHoraOcorrido;
-    private LocalDateTime dataRegistro;
-    private String regiao;
-    private String descricao;
-    private String recursosUtilizados;
+    private String local;
     private int numeroVitimas;
-    private String enderecoOcorrencia;
     private String situacaoFinal;
+    private String recursosUtilizados;
+    private String enderecoOcorrencia;
+    private String descricao;
     private String nome;
     private String codigoIdentificacao;
     private String cpf;
     private String telefone;
+
+    @OneToMany(mappedBy = "ocorrencia", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Foto> fotos = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
 
 }

@@ -2,9 +2,12 @@ package com.sigo.controller;
 
 
 import com.sigo.model.Ocorrencia;
+import com.sigo.model.Usuario;
 import com.sigo.service.OcorrenciaService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,6 +26,16 @@ public class OcorrenciaController {
         return ocorrenciaService.criarOcorrencia(ocorrencia);
     }
 
+    @PostMapping(consumes = "multipart/form-data")
+    public ResponseEntity<Ocorrencia> criarComFoto(
+            @RequestPart("ocorrencia") Ocorrencia ocorrencia,
+            @RequestPart("file") MultipartFile file
+    ) {
+        Ocorrencia salva = ocorrenciaService.criarComFoto(ocorrencia, file);
+        return ResponseEntity.ok(salva);
+    }
+
+
     @PutMapping("/{id}")
     public Ocorrencia editar(@PathVariable Long id, @RequestBody Ocorrencia ocorrencia) {
         return ocorrenciaService.editarOcorrencia(id, ocorrencia);
@@ -37,4 +50,11 @@ public class OcorrenciaController {
     public Ocorrencia buscarOcorrencia(@PathVariable Long id) {
         return ocorrenciaService.buscarPorId(id);
     }
+
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<Ocorrencia> excluirOcorrencia (@PathVariable Long id,  @AuthenticationPrincipal Usuario usuario) {
+        ocorrenciaService.excluirOcorrencia(id, usuario);
+        return ResponseEntity.noContent().build();
+    }
+
 }
