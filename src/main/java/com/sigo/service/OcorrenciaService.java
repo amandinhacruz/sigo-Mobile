@@ -21,6 +21,7 @@ public class OcorrenciaService {
 
     private final OcorrenciaRepository ocorrenciaRepository;
     private final UsuarioRepository usuarioRepository;
+    private final FotoService fotoService;
 
     public Ocorrencia criarOcorrencia (Ocorrencia ocorrencia) {
         ocorrencia.setDataRegistro(LocalDateTime.now());
@@ -55,7 +56,7 @@ public class OcorrenciaService {
             ocorrencia.setCodigoIdentificacao(dadosAtualizados.getCodigoIdentificacao());
             ocorrencia.setCpf(dadosAtualizados.getCpf());
             ocorrencia.setTelefone(dadosAtualizados.getTelefone());
-            ocorrencia.setFoto(dadosAtualizados.getFoto());
+            ocorrencia.setFotos(dadosAtualizados.getFotos());
 
             return  ocorrenciaRepository.save(ocorrencia);
         } else  {
