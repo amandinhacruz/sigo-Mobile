@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Value;
 @Configuration
 public class CloudinaryConfig {
 
-    @Value("${dmvughncq}")
+    @Value("${CLOUDINARY_CLOUD_NAME}")
     private String cloudName;
 
-    @Value("${275324558262478}")
+    @Value("${CLOUDINARY_API_KEY}")
     private String apiKey;
 
-    @Value("${A2rA1Jkn5UcKpdhn2vIB1t8BptM}")
+    @Value("${CLOUDINARY_API_SECRET}")
     private String apiSecret;
 
     @Bean
@@ -29,4 +29,3 @@ public class CloudinaryConfig {
         ));
     }
 }
-

@@ -29,7 +29,8 @@ public class SecurityConfig {
                     var corsConfig = new CorsConfiguration();
                     corsConfig.setAllowedOrigins(List.of(
                             "http://localhost:5173",
-                            "https://p-i-cbmpe.vercel.app/"
+                            "https://p-i-cbmpe.vercel.app/",
+                            "exp://26.253.137.94:8081"
                     ));
                     corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     corsConfig.setAllowedHeaders(List.of("*"));
