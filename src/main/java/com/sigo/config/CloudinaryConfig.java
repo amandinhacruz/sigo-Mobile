@@ -1,5 +1,7 @@
 package com.sigo.config;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.context.annotation.Bean;
 
 public class CloudinaryConfig {
