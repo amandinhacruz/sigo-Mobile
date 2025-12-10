@@ -37,8 +37,12 @@ public class OcorrenciaController {
 
 
     @PutMapping("/{id}")
-    public Ocorrencia editar(@PathVariable Long id, @RequestBody Ocorrencia ocorrencia) {
-        return ocorrenciaService.editarOcorrencia(id, ocorrencia);
+    public ResponseEntity<Ocorrencia> editarOcorrencia(
+            @PathVariable Long id,
+            @RequestBody Ocorrencia dadosAtualizados,
+            @AuthenticationPrincipal Usuario authUser) {
+        Ocorrencia atualizado = ocorrenciaService.editarOcorrencia(id, dadosAtualizados, authUser);
+        return ResponseEntity.ok(atualizado);
     }
 
     @GetMapping

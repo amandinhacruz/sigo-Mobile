@@ -49,6 +49,8 @@ public class UsuarioService {
         }
     }
 
+
+
     public void deletarUsuario (Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
